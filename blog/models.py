@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
+import markdown
+from django.utils.html import strip_tags
 # Create your models here.
 
 # 分类数据库
@@ -48,8 +50,36 @@ class Post(models.Model):
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和 Category 类似
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    # 记录文章访问次数
+    # PositiveIntegerField类型的值只允许为正整数或0
+    views = models.PositiveIntegerField(default=0)
+
+    # 当文章被访问时，views += 1
+    def increase_views(self):
+        self.views += 1
+        # update_fields 参数告诉 Django 只更新数据库中 views 字段的值
+        self.save(update_fields=['views'])
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
+
+    # 自动生成摘要
+    def save(self, *args, **kwargs):
+        if not self.excerpt:
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+            ])
+            # 先将 Markdown 文本渲染成 HTML 文本
+            # strip_tags 去掉 HTML 文本的全部 HTML 标签
+            # 从文本摘取前 54 个字符赋给 excerpt
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
+
+        # 调用父类的 save 方法将数据保存到数据库中
+        super(Post, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['-created_time']
