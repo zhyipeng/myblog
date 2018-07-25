@@ -182,7 +182,8 @@ class PostDetailView(DetailView):
         comment_list = self.object.comment_set.all()
         context.update({
             'form': form,
-            'comment_list': comment_list
+            'comment_list': comment_list,
+            'title': self.object.title
         })
         return context
 
@@ -281,3 +282,7 @@ def search(request):
     return render(request, 'blog/index.html', {'error_msg': error_msg,
                                                'post_list': post_list})
 
+
+#
+# class AboutView(ListView):
+#     template_name = 'blog/index.html'

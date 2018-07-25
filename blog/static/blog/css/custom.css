@@ -650,31 +650,35 @@ img {
 }
 
 .social li a {
-    border: 1px solid #888;
-    font-size: 22px;
-    color: #888;
+    /*border: 1px solid #888;*/
+    /*font-size: 22px;*/
+    /*color: #888;*/
     transition: all 0.3s ease-in;
 }
 
 .social li a:hover {
-    background-color: #333;
-    color: #fff;
+    /*background-color: #333;*/
+    /*color: #fff;*/
+}
+.github img{
+    width: 32px;
+    height: 32px;
 }
 
-.facebook a {
-    padding: 12px 21px;
+.github a {
+    /*padding: 12px 21px;*/
 }
 
-.twitter a {
-    padding: 12px 15px;
+.zhihu a {
+    /*padding: 12px 15px;*/
 }
 
 .google-plus a {
-    padding: 12px 15px;
+    /*padding: 12px 15px;*/
 }
 
 .tumblr a {
-    padding: 12px 20px;
+    /*padding: 12px 20px;*/
 }
 
 /**

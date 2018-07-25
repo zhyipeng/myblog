@@ -51,8 +51,8 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
                             <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="博客">博客</a></li>
-                            <li class="cl-effect-11"><a href="blog/about.html" data-hover="关于">关于</a></li>
-                            <li class="cl-effect-11"><a href="blog/contact.html" data-hover="联系">联系</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:about' %}" data-hover="关于">关于</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:contact' %}" data-hover="联系">联系</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -69,10 +69,7 @@
         </div>
     </header>
 </div>
-<!--
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>
-<div class="copyrights">Modified by <a href="http://zmrenwu.com/">追梦人物的博客</a></div>
--->
+
 <div class="content-body">
     <div class="container">
         <div class="row">
@@ -162,9 +159,9 @@
     <nav>
         <ul>
             <li><a href="{% url 'blog:index' %}">首页</a></li>
-            <li><a href="blog/full-width.html">博客</a></li>
-            <li><a href="blog/about.html">关于</a></li>
-            <li><a href="blog/contact.html">联系</a></li>
+            <li><a href="{% url 'blog:index' %}">博客</a></li>
+            <li><a href="{% url 'blog:about' %}">关于</a></li>
+            <li><a href="{% url 'blog:contact' %}">联系</a></li>
         </ul>
     </nav>
 </div>
